@@ -73,7 +73,7 @@ st.set_page_config(layout="wide")
 col1, col2, col3 = st.columns([1, 8, 1])
 
 with col2:
-    st.header("AI ECG Reader", divider='black')
+    st.title("AI ECG Reader", divider='blue')
 
     uploaded_files = st.file_uploader("Choose files", type=["jpg", "jpeg", "png", "mp4", "pdf", "mp3", "wav"], accept_multiple_files=True)
     if uploaded_files:
