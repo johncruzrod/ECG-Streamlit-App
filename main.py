@@ -73,7 +73,9 @@ st.set_page_config(layout="wide")
 col1, col2, col3 = st.columns([1, 8, 1])
 
 with col2:
-    st.header("AI ECG Reader", divider='blue')
+    st.title("🫀 AI ECG Reader")
+    st.subheader("Disclaimer")
+    st.write("Please note: The analysis provided by the AI ECG Reader is based on machine learning models and may not be accurate. Always consult a medical professional for health-related decisions.")
 
     uploaded_files = st.file_uploader("Choose files", type=["jpg", "jpeg", "png", "mp4", "pdf", "mp3", "wav"], accept_multiple_files=True)
     if uploaded_files:
