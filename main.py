@@ -30,7 +30,7 @@ vertexai.init(project=service_account_info["project_id"], credentials=credential
 system_prompt = Part.from_text("Please provide a detailed analysis of this ECG report, providing explanations and direct references for your analysis, giving good guidance and helpful insights")
 
 # Function to generate content (modified for multiple files)
-def generate_content(file_contents, file_names, prompt, system_prompt):
+def generate_content(file_contents, file_names, system_prompt):
     file_parts = []
     for file_content, file_name in zip(file_contents, file_names):
         mime_type = None
@@ -61,7 +61,7 @@ def generate_content(file_contents, file_names, prompt, system_prompt):
     }
     chat = model.start_chat()
     response = chat.send_message(
-        [system_prompt, *file_parts, prompt],  # Include files and prompt
+        [system_prompt, *file_parts],  # Include files and system prompt
         generation_config=generation_config,
         safety_settings=safety_settings
     )
@@ -79,8 +79,6 @@ with col2:
     if uploaded_files:
         file_contents = [file.read() for file in uploaded_files]
         file_names = [file.name for file in uploaded_files]
-        prompt = st.text_input("Enter your prompt:")
-        if st.button("Generate Content"):
-            with st.spinner('Generating content...'):
-                generated_content = generate_content(file_contents, file_names, prompt, system_prompt)
-            st.write(generated_content)
+        with st.spinner('Generating content...'):
+            generated_content = generate_content(file_contents, file_names, system_prompt)
+        st.write(generated_content)
