@@ -79,7 +79,7 @@ with col2:
     st.write("---")  # Adding a visual break
 
     st.header("Upload ECG images or PDF below")
-    uploaded_files = st.file_uploader("Choose files", type=["jpg", "jpeg", "png", "mp4", "pdf", "mp3", "wav"], accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Choose files", type=["jpg", "jpeg", "png", "pdf"], accept_multiple_files=True)
     if uploaded_files:
         file_contents = [file.read() for file in uploaded_files]
         file_names = [file.name for file in uploaded_files]
